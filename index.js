@@ -1,4 +1,6 @@
 import { fifaData } from './fifa.js';
+console.log(fifaData);
+
 // ⚽️ M  V P ⚽️ //
 
 /* Task 1: Investigate the data above. Practice accessing data by console.log-ing the following pieces of data 
@@ -9,34 +11,45 @@ import { fifaData } from './fifa.js';
 (d) Away Team goals for 2014 world cup final
 (e) Winner of 2014 world cup final */
 
+// const final=fifaData.filter(final=>final.stage=="final");
+// console.log(final);
 
+// const year2014= final.filter(num=> num.Year==2014);
+// console.log(year2014);
 
-
+// console.log(year2014["Home Team Name"]);
+// console.log(year2014["Away Team Name"]);
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 
-let filteredFinals=fifaData.filter(function(game){
-    return game.Stage="final";
-})
-console.log(filteredFinals);
+function getFinals(fifaData){
+let gettingFinals=fifaData.filter(function(game){
+        return game.Stage==="Final";
+    });
+    return gettingFinals;
+}
+
+
+console.log(getFinals(fifaData));
+
+
 
 /* Task 3: Implement a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
-let getYears=fifaData.map(function(game){
-    return game.Year;
-});
-console.log(getYears);
-
+function getYears(getFinals){
+    let finalsVari=getFinals(fifaData);
+    let gettingYears=finalsVari.filter(function(game){
+        return game.Year;
+    })
+    return gettingYears;
+}
+console.log(getYears(getFinals));
 
 /* Task 4: Implement a higher-order function called `getWinners`, that accepts the callback function `getFinals()` and determine the winner (home or away) of each `finals` game. Return the name of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
 
-    /* code here */
 
-};
 
-getWinners();
 
 /* Task 5: Implement a higher-order function called `getWinnersByYear` that accepts the following parameters and returns a set of strings "In {year}, {country} won the world cup!" 
 
