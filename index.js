@@ -86,11 +86,13 @@ Parameters:
  * callback function getYears
  */
 function getWinnersByYear(getWinners, getYears){
+let win2=[];
 let yearStorage=getYears(getFinals);
 let winnerStorage=getWinners(getFinals);
 for (let i=0; i<yearStorage.length; i++){
-console.log(`In ${yearStorage[i].Year}, ${winnerStorage[i]} won the world cup!`);
+win2.push(`In ${yearStorage[i].Year}, ${winnerStorage[i]} won the world cup!`);
 }
+return win2;
 }
 console.log(getWinnersByYear(getWinners,getYears));
 
