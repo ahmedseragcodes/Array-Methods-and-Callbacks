@@ -35,6 +35,21 @@ console.log(winnerDeterminer);
 })
 console.log(awayDeterminer);
 
+/* C */ 
+console.log(retriever[0]["Home Team Goals"]);
+
+/* D */
+console.log(retriever[0]["Away Team Goals"]);
+
+/* E */
+function winner2014(){
+if (retriever[0]["Home Team Goals"]>retriever[0]["Away Team Goals"]){
+    return retriever[0]["Home Team Name"];
+} else {
+    return retriever[0]["Away Team Name"];
+}
+};
+console.log(winner2014());
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 
