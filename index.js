@@ -11,15 +11,29 @@ console.log(fifaData);
 (d) Away Team goals for 2014 world cup final
 (e) Winner of 2014 world cup final */
 
-// const final=fifaData.filter(final=>final.stage=="final");
-// console.log(final);
+let retriever=fifaData.filter(function(game){
+    let retrieverMapper=game.Year>2013&&game.Stage==="Final";
+    return retrieverMapper;
+});
+console.log(retriever);
 
-// const year2014= final.filter(num=> num.Year==2014);
-// console.log(year2014);
+/* A */ let winnerDeterminer=retriever.map(function(game){
+    let ultimateWinner=[];
+    if (game["Home Team Goals"]>game["Away Team Goals"]){
+        ultimateWinner.push(game["Home Team Name"]);
+    } else {
+        ultimateWinner.push(game["Away Team Name"]);
+    };
+    return ultimateWinner;
+})
+console.log(winnerDeterminer);
 
-// console.log(year2014["Home Team Name"]);
-// console.log(year2014["Away Team Name"]);
-
+/* B */ let awayDeterminer=retriever.map(function(game){
+    let awayTeamName=[];
+    awayTeamName.push(game["Away Team Name"]);
+    return awayTeamName;
+})
+console.log(awayDeterminer);
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 
 function getFinals(fifaData){
@@ -47,8 +61,20 @@ console.log(getYears(getFinals));
 
 /* Task 4: Implement a higher-order function called `getWinners`, that accepts the callback function `getFinals()` and determine the winner (home or away) of each `finals` game. Return the name of all winning countries in an array called `winners` */ 
 
-
-
+function getWinners(getFinals){
+    let finalsVari=getFinals(fifaData);
+    let gettingWinners=finalsVari.map(function(game){
+        let winners=[];
+        if (game["Home Team Goals"]>game["Away Team Goals"]){
+            winners.push(game["Home Team Name"]);
+        } else if (game["Away Team Goals"]>game["Home Team Goals"]){
+            winners.push(game["Away Team Name"]);
+        }
+        return winners;
+    })
+    return gettingWinners;
+}
+console.log(getWinners(getFinals));
 
 
 /* Task 5: Implement a higher-order function called `getWinnersByYear` that accepts the following parameters and returns a set of strings "In {year}, {country} won the world cup!" 
